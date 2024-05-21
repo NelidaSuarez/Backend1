@@ -37,6 +37,15 @@ const addProductToCart = async (cid, pid) => {
   };
 
   const index = carts.findIndex((cart) => cart.id === cid);
+/*  const productRepeat = carts[index].products.filter( p => p.id === pid )
+ console.log(productRepeat)
+  if (productRepeat) {
+    const product = {
+      ...productRepeat,
+      quantity: quantity+1,
+    };
+    carts[index].products.push(product);
+  }; */
   carts[index].products.push(product);
 
 
