@@ -6,7 +6,8 @@ const pathFile = "./src/data/products.json";
 
 const addProduct = async (product) => {
   await getProducts();
-  const { title, description, price, thumbnail, code, stock, category } = product;
+  const { title, description, price, thumbnail, code, stock, category } =
+    product;
   const newProduct = {
     id: products.length + 1,
     title,
@@ -30,7 +31,7 @@ const getProducts = async (limit) => {
   const productsJson = await fs.promises.readFile(pathFile, "utf8");
   const productsParse = JSON.parse(productsJson);
   products = productsParse || [];
-  
+
   if (!limit) return products;
 
   return products.slice(0, limit);

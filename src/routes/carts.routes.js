@@ -19,7 +19,10 @@ router.get("/:cid", async (req, res) => {
   try {
     const { cid } = req.params;
     const cart = await cartManager.getCartById(Number(cid));
-    if (!cart) return res.status(404).json({ status: "Error", msg: "Carrito no encontrado" });
+    if (!cart)
+      return res
+        .status(404)
+        .json({ status: "Error", msg: "Carrito no encontrado" });
 
     res.status(200).json({ status: "success", cart });
   } catch (error) {
@@ -33,10 +36,16 @@ router.post("/:cid/product/:pid", async (req, res) => {
     const { cid, pid } = req.params;
 
     const product = await productManager.getProductById(Number(pid));
-    if (!product) return res.status(404).json({ status: "Error", msg: "Producto no encontrado" });
-
+    if (!product)
+      return res
+        .status(404)
+        .json({ status: "Error", msg: "Producto no encontrado" });
+    console.log("se repite");
     const cart = await cartManager.addProductToCart(Number(cid), Number(pid));
-    if (!cart) return res.status(404).json({ status: "Error", msg: "Carrito no encontrado" });
+    if (!cart)
+      return res
+        .status(404)
+        .json({ status: "Error", msg: "Carrito no encontrado" });
 
     res.status(200).json({ status: "success", cart });
   } catch (error) {
